@@ -8,6 +8,7 @@ function handleClickTaskElement(event) {
   }
   taskBackgroundColor.classList.add('selected');
 }
+
 // Lidar com o evento double click na tarefa
 function handleDblclickTaskElement(event) {
   const taskCompleted = event.target;
