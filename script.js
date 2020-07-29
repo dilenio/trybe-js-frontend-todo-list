@@ -84,6 +84,14 @@ function removeCompletedTasks() {
   }
 }
 
+// Apaga tarefa selecionada
+function removeSelectedTask() {
+  const selectedTask = document.getElementsByClassName('selected');
+  while (selectedTask.length > 0) {
+    selectedTask[0].remove();
+  }
+}
+
 // Chama a função para criar os elementos da tarefa
 const buttonCreateTask = document.querySelector('#criar-tarefa');
 buttonCreateTask.addEventListener('click', createTaskElement);
@@ -99,6 +107,10 @@ buttonRemoveCompletedTasks.addEventListener('click', removeCompletedTasks);
 // Chama a função para salvar as tarefas no LocalStorage
 const buttonSaveTasks = document.querySelector('#salvar-tarefas');
 buttonSaveTasks.addEventListener('click', saveToLocalStorage);
+
+// Chama a função para apagar a tarefa selecionada
+const buttonRemoveSelectedTask = document.querySelector('#remover-selecionado');
+buttonRemoveSelectedTask.addEventListener('click', removeSelectedTask);
 
 window.onload = function () {
   if (typeof Storage !== 'undefined') {
