@@ -34,9 +34,17 @@ function createTaskElement() {
 
 // Apaga todas as tarefas
 function removeAllTasks() {
-  const allTasks = document.getElementById('lista-tarefas');
+  const allTasks = document.querySelector('#lista-tarefas');
   while (allTasks.firstChild) {
     allTasks.removeChild(allTasks.lastChild);
+  }
+}
+
+// Apaga tarefas concluídas
+function removeCompletedTasks() {
+  const allCompletedTasks = document.getElementsByClassName('completed');
+  while (allCompletedTasks.length > 0) {
+    allCompletedTasks[0].remove();
   }
 }
 
@@ -47,3 +55,7 @@ buttonCreateTask.addEventListener('click', createTaskElement);
 // Chama a função para apagar todas as tarefas
 const buttonRemoveAllTasks = document.querySelector('#apaga-tudo');
 buttonRemoveAllTasks.addEventListener('click', removeAllTasks);
+
+// Chama a função para apagar tarefas finalizadas
+const buttonRemoveCompletedTasks = document.querySelector('#remover-finalizados');
+buttonRemoveCompletedTasks.addEventListener('click', removeCompletedTasks);
