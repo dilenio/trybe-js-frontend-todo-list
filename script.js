@@ -12,22 +12,6 @@ function saveToLocalStorage() {
   localStorage.setItem('classes', objClasses.join());
 }
 
-// Recupera as tarefas do LocalStorage
-function getFromLocalStorage() {
-  const objTasks = localStorage.getItem('tasks').split(',');
-  const objClasses = localStorage.getItem('classes').split(',');
-  for (let index = 0; index < objTasks.length; index += 1) {
-    const addTask = document.querySelector('#lista-tarefas');
-    const list = document.createElement('li');
-    list.innerHTML = objTasks[index];
-    list.className = objClasses[index];
-    list.id = 'lista';
-    addTask.appendChild(list);
-    list.addEventListener('click', handleClickTaskElement);
-    list.addEventListener('dblclick', handleDblclickTaskElement);
-  }
-}
-
 // Lidar com o evento click na tarefa
 // Remove a seleção de itens e adiciona apenas naquele que foi clicado.
 function handleClickTaskElement(event) {
@@ -46,6 +30,22 @@ function handleDblclickTaskElement(event) {
     taskCompleted.classList.remove('completed');
   } else {
     taskCompleted.classList.add('completed');
+  }
+}
+
+// Recupera as tarefas do LocalStorage
+function getFromLocalStorage() {
+  const objTasks = localStorage.getItem('tasks').split(',');
+  const objClasses = localStorage.getItem('classes').split(',');
+  for (let index = 0; index < objTasks.length; index += 1) {
+    const addTask = document.querySelector('#lista-tarefas');
+    const list = document.createElement('li');
+    list.innerHTML = objTasks[index];
+    list.className = objClasses[index];
+    list.id = 'lista';
+    addTask.appendChild(list);
+    list.addEventListener('click', handleClickTaskElement);
+    list.addEventListener('dblclick', handleDblclickTaskElement);
   }
 }
 
