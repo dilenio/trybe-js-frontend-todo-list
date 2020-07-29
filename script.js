@@ -32,6 +32,18 @@ function createTaskElement() {
   li.addEventListener('dblclick', handleDblclickTaskElement);
 }
 
+// Apaga todas as tarefas
+function removeAllTasks() {
+  const allTasks = document.getElementById('lista-tarefas');
+  while (allTasks.firstChild) {
+    allTasks.removeChild(allTasks.lastChild);
+  }
+}
+
 // Chama a função para criar os elementos da tarefa
 const buttonCreateTask = document.querySelector('#criar-tarefa');
 buttonCreateTask.addEventListener('click', createTaskElement);
+
+// Chama a função para apagar todas as tarefas
+const buttonRemoveAllTasks = document.querySelector('#apaga-tudo');
+buttonRemoveAllTasks.addEventListener('click', removeAllTasks);
