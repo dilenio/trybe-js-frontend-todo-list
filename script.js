@@ -1,15 +1,19 @@
 // Salva no LocalStorage as tarefas
 function saveToLocalStorage() {
-  localStorage.clear();
-  const tasks = document.querySelector('#lista-tarefas');
-  const objTasks = [];
-  const objClasses = [];
-  for (let index = 0; index < tasks.children.length; index += 1) {
-    objTasks[index] = tasks.children[index].innerText;
-    objClasses[index] = tasks.children[index].classList;
+  if (typeof Storage !== "undefined") {
+    localStorage.clear();
+    const tasks = document.querySelector('#lista-tarefas');
+    const objTasks = [];
+    const objClasses = [];
+    for (let index = 0; index < tasks.children.length; index += 1) {
+      objTasks[index] = tasks.children[index].innerText;
+      objClasses[index] = tasks.children[index].classList;
+    }
+    localStorage.setItem('tasks', objTasks.join());
+    localStorage.setItem('classes', objClasses.join());
+  } else {
+    document.write('Sem suporte para Web Storage.');
   }
-  localStorage.setItem('tasks', objTasks.join());
-  localStorage.setItem('classes', objClasses.join());
 }
 
 // Lidar com o evento click na tarefa
@@ -97,5 +101,11 @@ const buttonSaveTasks = document.querySelector('#salvar-tarefas');
 buttonSaveTasks.addEventListener('click', saveToLocalStorage);
 
 window.onload = function () {
-  getFromLocalStorage();
+  if (typeof Storage !== "undefined") {
+    if (localStorage.tasks !== undefined) {
+      getFromLocalStorage();
+    }
+  } else {
+    document.write('Sem suporte para Web Storage.');
+  }
 };
