@@ -1,12 +1,21 @@
 // Lidar com o evento click na tarefa
 // Remove a seleção de itens e adiciona apenas naquele que foi clicado.
-function handleTaskElement(event) {
+function handleClickTaskElement(event) {
   const taskBackgroundColor = event.target;
   const removeBackgroundColorTask = document.querySelectorAll('#lista');
   for (let index = 0; index < removeBackgroundColorTask.length; index += 1) {
-    removeBackgroundColorTask[index].style.backgroundColor = '';
+    removeBackgroundColorTask[index].classList.remove('selected');
   }
-  taskBackgroundColor.style.backgroundColor = 'rgb(128, 128, 128)';
+  taskBackgroundColor.classList.add('selected');
+}
+// Lidar com o evento double click na tarefa
+function handleDblclickTaskElement(event) {
+  const taskCompleted = event.target;
+  if (taskCompleted.classList.contains('completed')) {
+    taskCompleted.classList.remove('completed');
+  } else {
+    taskCompleted.classList.add('completed');
+  }
 }
 
 // Cria os elementos da tarefa
@@ -18,7 +27,8 @@ function createTaskElement() {
   li.id = 'lista';
   addNewTask.appendChild(li);
   textToTask.value = '';
-  li.addEventListener('click', handleTaskElement);
+  li.addEventListener('click', handleClickTaskElement);
+  li.addEventListener('dblclick', handleDblclickTaskElement);
 }
 
 // Chama a função para criar os elementos da tarefa
