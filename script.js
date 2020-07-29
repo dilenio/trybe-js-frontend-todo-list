@@ -1,6 +1,6 @@
 // Salva no LocalStorage as tarefas
 function saveToLocalStorage() {
-  if (typeof Storage !== "undefined") {
+  if (typeof Storage !== 'undefined') {
     localStorage.clear();
     const tasks = document.querySelector('#lista-tarefas');
     const objTasks = [];
@@ -101,7 +101,7 @@ const buttonSaveTasks = document.querySelector('#salvar-tarefas');
 buttonSaveTasks.addEventListener('click', saveToLocalStorage);
 
 window.onload = function () {
-  if (typeof Storage !== "undefined") {
+  if (typeof Storage !== 'undefined') {
     if (localStorage.tasks !== undefined) {
       getFromLocalStorage();
     }
