@@ -92,6 +92,46 @@ function removeSelectedTask() {
   }
 }
 
+// Move para cima a tarefa selecionada
+function moveUpSelectedTask() {
+  const tasksToMoveUp = document.querySelectorAll('#lista');
+  for (let index = 1; index < tasksToMoveUp.length; index += 1) {
+    if (tasksToMoveUp[index].classList.contains('selected')) {
+      const liPrevClass = tasksToMoveUp[index - 1].className;
+      const liPrevTask = tasksToMoveUp[index - 1].innerText;
+      tasksToMoveUp[index - 1].innerText = tasksToMoveUp[index].innerText;
+      tasksToMoveUp[index - 1].className = tasksToMoveUp[index].className;
+      tasksToMoveUp[index].innerText = liPrevTask;
+      tasksToMoveUp[index].className = liPrevClass;
+      break;
+    }
+  }
+}
+
+// Move para baixo a tarefa selecionada
+function moveDownSelectedTask() {
+  const tasksToMoveDown = document.querySelectorAll('#lista');
+  for (let index = 0; index < tasksToMoveDown.length - 1; index += 1) {
+    if (tasksToMoveDown[index].classList.contains('selected')) {
+      const liNextClass = tasksToMoveDown[index + 1].className;
+      const LiNextTask = tasksToMoveDown[index + 1].innerText;
+      tasksToMoveDown[index + 1].innerText = tasksToMoveDown[index].innerText;
+      tasksToMoveDown[index + 1].className = tasksToMoveDown[index].className;
+      tasksToMoveDown[index].innerText = LiNextTask;
+      tasksToMoveDown[index].className = liNextClass;
+      break;
+    }
+  }
+}
+
+// // Move para baixo a tarefa selecionada
+// function moveDownSelectedTask() {
+//   const selectedTask = document.getElementsByClassName('selected');
+//   while (selectedTask.length > 0) {
+//     selectedTask[0].remove();
+//   }
+// }
+
 // Chama a função para criar os elementos da tarefa
 const buttonCreateTask = document.querySelector('#criar-tarefa');
 buttonCreateTask.addEventListener('click', createTaskElement);
@@ -111,6 +151,14 @@ buttonSaveTasks.addEventListener('click', saveToLocalStorage);
 // Chama a função para apagar a tarefa selecionada
 const buttonRemoveSelectedTask = document.querySelector('#remover-selecionado');
 buttonRemoveSelectedTask.addEventListener('click', removeSelectedTask);
+
+// Chama a função para mover para cima a tarefa selecionada
+const buttonMoveUpSelectedTask = document.querySelector('#mover-cima');
+buttonMoveUpSelectedTask.addEventListener('click', moveUpSelectedTask);
+
+// Chama a função para mover para cima a tarefa selecionada
+const buttonMoveDownSelectedTask = document.querySelector('#mover-baixo');
+buttonMoveDownSelectedTask.addEventListener('click', moveDownSelectedTask);
 
 window.onload = function () {
   if (typeof Storage !== 'undefined') {
