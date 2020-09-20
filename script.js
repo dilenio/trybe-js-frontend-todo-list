@@ -124,14 +124,6 @@ function moveDownSelectedTask() {
   }
 }
 
-// // Move para baixo a tarefa selecionada
-// function moveDownSelectedTask() {
-//   const selectedTask = document.getElementsByClassName('selected');
-//   while (selectedTask.length > 0) {
-//     selectedTask[0].remove();
-//   }
-// }
-
 // Chama a função para criar os elementos da tarefa
 const buttonCreateTask = document.querySelector('#criar-tarefa');
 buttonCreateTask.addEventListener('click', createTaskElement);
@@ -160,6 +152,7 @@ buttonMoveUpSelectedTask.addEventListener('click', moveUpSelectedTask);
 const buttonMoveDownSelectedTask = document.querySelector('#mover-baixo');
 buttonMoveDownSelectedTask.addEventListener('click', moveDownSelectedTask);
 
+// Função executada no carregamento da página
 window.onload = function () {
   if (typeof Storage !== 'undefined') {
     if (localStorage.tasks !== undefined) {
